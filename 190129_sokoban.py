@@ -34,7 +34,7 @@ imgMan= imgManF
 
 iot_stage =[
 	[MutableString("##########"),
-	MutableString("##  #  @##"),
+	MutableString("#   #  @##"),
 	MutableString("###   ## #"),
 	MutableString("#  B.    #"),
 	MutableString("##   # B #"),
@@ -49,6 +49,15 @@ iot_stage =[
 	MutableString("###    ###"),
 	MutableString("#.  B#   #"),
 	MutableString("#  #     #"),
+	MutableString("##########")],
+
+	[MutableString("##########"),
+	MutableString("#      @ #"),
+	MutableString("#####    #"),
+	MutableString("#.  BB  .#"),
+	MutableString("#     ####"),
+	MutableString("#.  B    #"),
+	MutableString("#        #"),
 	MutableString("##########")]
 	]
 	
@@ -106,9 +115,11 @@ while True:
 		iot_map = []
 		for iStage in range(tiley):
 			iot_map.append(iot_stage[stage_num][iStage][:])
+		iot_caption = "IoT-Sokoban [STAGE: %d]" % (stage_num+1) 
+		pygame.display.set_caption(iot_caption)
+		continue
 
 	for event in pygame.event.get():
-
 		if event.type == pygame.KEYDOWN:
 			TempX = manx
 			TempY = many
@@ -124,6 +135,11 @@ while True:
 			elif event.key == pygame.K_RIGHT:
 				imgMan = imgManR
 				manx = manx +1
+			elif event.key == pygame.K_r:
+				iot_map = []
+				for iStage in range(tiley):
+					iot_map.append(iot_stage[stage_num][iStage][:])
+				break	
 			else:
 				continue
 #			if ' '== iot_map[many][manx] or '.' == iot_map[many][manx]:
