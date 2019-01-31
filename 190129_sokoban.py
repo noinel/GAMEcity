@@ -5,10 +5,17 @@ import time
 pygame.init()
 manx = 0
 many = 0
-
+pixelx = 60
+pixely = 60
+tilex = 10
+tiley = 8
+displayx = tilex * pixelx
+displayy = tiley * pixely
 iot_caption = 'IoT-Sokoban'
 pygame.display.set_caption(iot_caption)
-DISPLAYSURF = pygame.display.set_mode((600,480 ), 0, 32)
+iot_caption = 'IoT-Sokoban'
+pygame.display.set_caption(iot_caption)
+DISPLAYSURF = pygame.display.set_mode((displayx,displayy ), 0, 32)
 WHITE = (255, 255, 255)
 
 imgWall = pygame.image.load('iot_wall.png') 
@@ -51,7 +58,7 @@ iot_caption = "IoT-Sokoban [STAGE: %d]" % (stage_num+1)
 pygame.display.set_caption(iot_caption)
 
 iot_map = []
-for iStage in range(8):
+for iStage in range(tiley):
 	iot_map.append(iot_stage[stage_num][iStage][:])
 	continue
 while True:
@@ -61,20 +68,20 @@ while True:
 
 	DISPLAYSURF.fill(WHITE)
 	stage_end = True
-	for ix in range(10):
-		for iy in range(8):
+	for ix in range(tilex):
+		for iy in range(tiley):
 			if '#' == iot_map[iy][ix]:
-				DISPLAYSURF.blit(imgWall, (ix*60 , iy*60))
+				DISPLAYSURF.blit(imgWall, (ix*pixelx , iy*pixely))
 				
 			elif 'B' == iot_map[iy][ix]:
-				DISPLAYSURF.blit(imgBox, (ix*60 , iy*60))
+				DISPLAYSURF.blit(imgBox, (ix*pixelx , iy*pixely))
 				if '.' !=iot_stage[stage_num][iy][ix]:
 					stage_end = False
 			elif '.' == iot_map[iy][ix]:
-				DISPLAYSURF.blit(imgDot, (ix*60 , iy*60))
+				DISPLAYSURF.blit(imgDot, (ix*pixelx , iy*pixely))
 				
 			elif '@' == iot_map[iy][ix]:
-					DISPLAYSURF.blit(imgMan, (ix*60 , iy*60))
+					DISPLAYSURF.blit(imgMan, (ix*pixelx , iy*pixely))
 					manx = ix
 					many = iy
 	
@@ -97,7 +104,7 @@ while True:
 		stage_num = stage_num+ 1
 
 		iot_map = []
-		for iStage in range(8):
+		for iStage in range(tiley):
 			iot_map.append(iot_stage[stage_num][iStage][:])
 
 	for event in pygame.event.get():
