@@ -6,8 +6,9 @@ pygame.init()
 manx = 0
 many = 0
 
+iot_caption = 'IoT-Sokoban'
+pygame.display.set_caption(iot_caption)
 DISPLAYSURF = pygame.display.set_mode((600,480 ), 0, 32)
-pygame.display.set_caption('IoT-Sokoban')
 WHITE = (255, 255, 255)
 
 imgWall = pygame.image.load('iot_wall.png') 
@@ -39,17 +40,22 @@ iot_stage =[
 	MutableString("###    ###"),
 	MutableString("#.  BB  .#"),
 	MutableString("###    ###"),
-	MutableString("#   B#   #"),
-	MutableString("# .#     #"),
+	MutableString("#.  B#   #"),
+	MutableString("#  #     #"),
 	MutableString("##########")]
 	]
 	
 stage_num=0
 
+iot_caption = "IoT-Sokoban [STAGE: %d]" % (stage_num+1) 
+pygame.display.set_caption(iot_caption)
+
 iot_map = []
 for iStage in range(8):
 	iot_map.append(iot_stage[stage_num][iStage][:])
+	continue
 while True:
+
 	
 		
 
@@ -75,11 +81,11 @@ while True:
 	pygame.display.update()
 	if True == stage_end:
 		DISPLAYSURF.blit(imgClear, (120 , 0))
-	
+			
 		pygame.display.update()
 		keyinput = False
+		
 		while True:
-	
 			for event in pygame.event.get():
 				if event.type == pygame.KEYDOWN:
 					keyinput = True
@@ -88,8 +94,14 @@ while True:
 				break
 			time.sleep(0.1)
 			continue
+		stage_num = stage_num+ 1
+
+		iot_map = []
+		for iStage in range(8):
+			iot_map.append(iot_stage[stage_num][iStage][:])
 
 	for event in pygame.event.get():
+
 		if event.type == pygame.KEYDOWN:
 			TempX = manx
 			TempY = many
