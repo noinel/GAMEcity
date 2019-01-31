@@ -3,8 +3,10 @@ import sys
 from UserString import MutableString
 import time
 pygame.init()
+	
 manx = 0
 many = 0
+iot_count = 0
 pixelx = 60
 pixely = 60
 tilex = 10
@@ -63,7 +65,7 @@ iot_stage =[
 	
 stage_num=0
 
-iot_caption = "IoT-Sokoban [STAGE: %d]" % (stage_num+1) 
+iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]" % (stage_num+1,iot_count) 
 pygame.display.set_caption(iot_caption)
 
 iot_map = []
@@ -115,7 +117,7 @@ while True:
 		iot_map = []
 		for iStage in range(tiley):
 			iot_map.append(iot_stage[stage_num][iStage][:])
-		iot_caption = "IoT-Sokoban [STAGE: %d]" % (stage_num+1) 
+		iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]"% (stage_num+1, iot_count) 
 		pygame.display.set_caption(iot_caption)
 		continue
 
@@ -150,13 +152,16 @@ while True:
 					else:
 						manx= TempX
 						many= TempY
+#						iot_count = iot_count -1
+						continue
 				if '.' == iot_stage[stage_num][TempY][TempX]:
 					iot_map[TempY][TempX]='.'
 				else:
 					iot_map[TempY][TempX]=' '
 
 				iot_map[many][manx] = '@'
-			
+				iot_count= iot_count+1	
+				print iot_count
 			else:
 				manx= TempX
 				many= TempY
