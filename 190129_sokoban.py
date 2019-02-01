@@ -62,14 +62,21 @@ iot_stage =[
 	]
 	
 stage_num=0
+def IotSetCaption(caption):
+		
+	pygame.display.set_caption(caption)
 
 iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]" % (stage_num+1,iot_count) 
 pygame.display.set_caption(iot_caption)
 
-iot_map = []
-for iStage in range(tiley):
-	iot_map.append(iot_stage[stage_num][iStage][:])
-	continue
+
+def IotLoadMap():
+	global iot_map
+
+
+	for iStage in range(tiley):
+		iot_map.append(iot_stage[stage_num][iStage][:])
+
 
 def IotDraw():
 
@@ -107,7 +114,8 @@ def IotDraw():
 				DISPLAYSURF.blit(imgMan, (ix*pixelx , iy*pixely))
 				manx = ix
 				many = iy
-	
+iot_map = []
+IotLoadMap()
 
 	
 while True:
