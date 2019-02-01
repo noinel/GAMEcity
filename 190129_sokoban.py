@@ -122,10 +122,8 @@ while True:
 
 	
 		
-	iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]"% (stage_num+1, iot_count) 
-	pygame.display.set_caption(iot_caption)
-
-
+#	pygame.display.set_caption(iot_caption)
+	
 	IotDraw()
 
 	pygame.display.update()
@@ -151,7 +149,7 @@ while True:
 		for iStage in range(tiley):
 			iot_map.append(iot_stage[stage_num][iStage][:])
 		iot_count = 0
-#		iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]"% (stage_num+1, iot_count) 
+		IotSetCaption("IoT-Sokoban [STAGE: %d][count: %d]"% (stage_num+1, iot_count))
 		continue
 
 	for event in pygame.event.get():
@@ -175,7 +173,7 @@ while True:
 				for iStage in range(tiley):
 					iot_map.append(iot_stage[stage_num][iStage][:])
 				iot_count = 0
-#				iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]" % (stage_num+1,iot_count) 
+				IotSetCaption("IoT-Sokoban [STAGE: %d][count: %d]"% (stage_num+1, iot_count))
 				break	
 			else:
 				continue
@@ -196,7 +194,7 @@ while True:
 
 				iot_map[many][manx] = '@'
 				iot_count= iot_count+1	
-#				iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]" % (stage_num+1,iot_count) 
+				IotSetCaption("IoT-Sokoban [STAGE: %d][count: %d]"% (stage_num+1, iot_count))
 			else:
 				manx= TempX
 				many= TempY
