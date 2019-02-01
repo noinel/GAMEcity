@@ -15,8 +15,6 @@ displayx = tilex * pixelx
 displayy = tiley * pixely
 iot_caption = 'IoT-Sokoban'
 pygame.display.set_caption(iot_caption)
-iot_caption = 'IoT-Sokoban'
-pygame.display.set_caption(iot_caption)
 DISPLAYSURF = pygame.display.set_mode((displayx,displayy ), 0, 32)
 WHITE = (255, 255, 255)
 
@@ -72,11 +70,17 @@ iot_map = []
 for iStage in range(tiley):
 	iot_map.append(iot_stage[stage_num][iStage][:])
 	continue
+
+def IotDraw():
+	print "IotDraw"
+	
+	
 while True:
 
 	
 		
-
+	iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]"% (stage_num+1, iot_count) 
+	pygame.display.set_caption(iot_caption)
 	DISPLAYSURF.fill(WHITE)
 	stage_end = True
 	for ix in range(tilex):
@@ -117,8 +121,8 @@ while True:
 		iot_map = []
 		for iStage in range(tiley):
 			iot_map.append(iot_stage[stage_num][iStage][:])
-		iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]"% (stage_num+1, iot_count) 
-		pygame.display.set_caption(iot_caption)
+		iot_count = 0
+#		iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]"% (stage_num+1, iot_count) 
 		continue
 
 	for event in pygame.event.get():
@@ -128,6 +132,7 @@ while True:
 			if event.key == pygame.K_DOWN:
 				imgMan = imgManF
 				many =many + 1
+				IotDraw()
 			elif event.key == pygame.K_UP:
 				imgMan = imgManB
 				many = many - 1
@@ -141,6 +146,8 @@ while True:
 				iot_map = []
 				for iStage in range(tiley):
 					iot_map.append(iot_stage[stage_num][iStage][:])
+				iot_count = 0
+#				iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]" % (stage_num+1,iot_count) 
 				break	
 			else:
 				continue
@@ -161,7 +168,7 @@ while True:
 
 				iot_map[many][manx] = '@'
 				iot_count= iot_count+1	
-				print iot_count
+#				iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]" % (stage_num+1,iot_count) 
 			else:
 				manx= TempX
 				many= TempY
