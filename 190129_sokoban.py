@@ -102,10 +102,8 @@ def IotDraw():
 def IotInit():
 	global DISPLAYSURF
 
-	pygame.display.set_caption(iot_caption)
 	DISPLAYSURF = pygame.display.set_mode((displayx,displayy ), 0, 32)
 	IotLoadMap()
-	iot_caption = "IoT-Sokoban [STAGE: %d][count: %d]" % (stage_num+1,iot_count) 
 	pygame.display.update()
 
 
@@ -115,8 +113,8 @@ IotInit()
 while True:
 
 	
+	IotSetCaption("IoT-Sokoban [STAGE: %d][count: %d]"% (stage_num+1, iot_count))
 		
-	pygame.display.set_caption(iot_caption)
 	
 	IotDraw()
 
